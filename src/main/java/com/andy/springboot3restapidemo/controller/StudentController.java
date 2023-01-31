@@ -2,6 +2,7 @@ package com.andy.springboot3restapidemo.controller;
 
 import com.andy.springboot3restapidemo.bean.Student;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -10,8 +11,13 @@ import java.util.List;
 @RestController
 public class StudentController {
     @GetMapping("student")
-    public Student getStudent() {
-        return new Student(1, "John", "Doe");
+    public ResponseEntity<Student> getStudent() {
+        Student student = new Student(1, "John", "Doe");
+
+        return ResponseEntity
+                .ok()
+                .header("custom-header", "Foo")
+                .body(student);
     }
 
     @GetMapping("students")
