@@ -1,10 +1,8 @@
 package com.andy.springboot3restapidemo.controller;
 
 import com.andy.springboot3restapidemo.bean.Student;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,5 +36,15 @@ public class StudentController {
     @GetMapping("students/query")
     public Student getStudentByQueryVariable(@RequestParam(defaultValue = "89898") int id) {
         return new Student(id, "John", "Doe");
+    }
+
+    @PostMapping("students/create")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Student createStudent(@RequestBody Student student) {
+        System.out.println("student.getId() = " + student.getId());
+        System.out.println("student.getFirstName() = " + student.getFirstName());
+        System.out.println("student.getLastName() = " + student.getLastName());
+
+        return student;
     }
 }
