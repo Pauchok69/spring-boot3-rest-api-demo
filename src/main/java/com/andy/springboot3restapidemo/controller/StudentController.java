@@ -47,4 +47,12 @@ public class StudentController {
 
         return student;
     }
+
+    @PutMapping("students/{id}/update")
+    public Student updateStudent(@PathVariable("id") int studentId, @RequestBody Student student) {
+        System.out.println("studentId = " + studentId);
+        System.out.println("student = " + student);
+
+        return student;
+    }
 }
